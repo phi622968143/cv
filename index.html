@@ -12,9 +12,9 @@
             margin: 0;
             padding: 0;
             background-image: url("/images/bocchi.png");
-            background-size: cover; /* 确保图片覆盖整个背景 */
-            background-position: center; /* 图片居中 */
-            background-repeat: no-repeat; /* 防止图片重复 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
         }
         .container {
@@ -28,12 +28,12 @@
         }
         img {
             width: 200px;
-            height: 200px; /* 設定寬高相同，確保是正圓 */
-            object-fit: cover; /* 確保圖片不變形 */
+            height: 200px;
+            object-fit: cover;
             border-radius: 50%;
+            cursor: pointer;
             transition: transform 0.3s, filter 0.3s;
         }
-      
         img:hover {
             transform: scale(1.1);
             filter: brightness(1.2);
@@ -63,6 +63,14 @@
         li:hover {
             background: #ddd;
         }
+        /* 旋轉動畫 */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .playing {
+            animation: spin 3s linear infinite;
+        }
     </style>
 </head>
 <body>
@@ -88,37 +96,49 @@
 
         <h2>可工作時段</h2>
         <p>每週至少三天，週一不可，其餘時間皆可排班。</p>
+
         <h3>興趣與個性</h3>
         <p>🎸,善於溝通,願意學習改進</p>
 
-        <p><h3>點擊貓咪圖會有呼嚕聲喔！</h3> </p>
-       <img src="./images/bcat.png" alt="貓咪圖片" id="playAudio">
-       <p><h3>(我家妙妙是小女生)</h3></p>
+        <h3>點擊貓咪圖會有呼嚕聲喔！</h3>
+        <img src="./images/bcat.png" alt="貓咪圖片" id="playAudio">
+        <p><h3>(我家妙妙是小女生)</h3></p>
         <audio id="audio" src="/voice/cat.m4a"></audio>
+        
+        <h3>最愛的歌 (落日飛車 - Let There Be Light Again)</h3>
+        <img src="./images/Light.png" alt="light" id="playSunset">
+        <audio id="music" src="/voice/Light.m4a"></audio>
+    </div>
 
-   
-    
-</div>
     <script>
-        //listem ele when clicking play meow and if ended start from 0:00
-        document.getElementById("playAudio").addEventListener("click", function() {
-            var audio = document.getElementById("audio");
+        // 點擊圖片播放音樂
+        function toggleAudio(audioId, imgId, rotate = false) {
+            let audio = document.getElementById(audioId);
+            let img = document.getElementById(imgId);
+
             if (audio.paused) {
                 audio.play();
+                if (rotate) img.classList.add("playing");
             } else {
                 audio.pause();
                 audio.currentTime = 0;
+                if (rotate) img.classList.remove("playing");
             }
+        }
+
+        // 監聽點擊事件
+        document.getElementById("playAudio").addEventListener("click", function() {
+            toggleAudio("audio", "playAudio");
         });
-    </script>
-    <script>
+
+        document.getElementById("playSunset").addEventListener("click", function() {
+            toggleAudio("music", "playSunset", true);
+        });
+
+        // 讓 h2 滑鼠懸停時變大
         document.querySelectorAll("h2").forEach(h2 => {
-            h2.addEventListener("mouseover", () => {
-                h2.style.fontSize = "1.8em";
-            });
-            h2.addEventListener("mouseout", () => {
-                h2.style.fontSize = "1.5em";
-            });
+            h2.addEventListener("mouseover", () => h2.style.fontSize = "1.8em");
+            h2.addEventListener("mouseout", () => h2.style.fontSize = "1.5em");
         });
     </script>
 
