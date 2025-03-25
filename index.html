@@ -11,6 +11,11 @@
             text-align: center;
             margin: 0;
             padding: 0;
+            background-image: url("/images/bocchi.png");
+            background-size: cover; /* 确保图片覆盖整个背景 */
+            background-position: center; /* 图片居中 */
+            background-repeat: no-repeat; /* 防止图片重复 */
+            
         }
         .container {
             width: 80%;
@@ -28,6 +33,7 @@
             border-radius: 50%;
             transition: transform 0.3s, filter 0.3s;
         }
+      
         img:hover {
             transform: scale(1.1);
             filter: brightness(1.2);
