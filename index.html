@@ -90,8 +90,26 @@
         <p>每週至少三天，週一不可，其餘時間皆可排班。</p>
         <h3>興趣與個性</h3>
         <p>🎸,善於溝通,願意學習改進</p>
-    </div>
 
+        <p><h3>點擊貓咪圖會有呼嚕聲喔！</h3> </p>
+       <img src="./images/bcat.png" alt="貓咪圖片" id="playAudio">
+
+    <audio id="audio" src="/voice/cat.m4a"></audio>
+
+   
+    
+</div>
+    <script>
+        document.getElementById("playAudio").addEventListener("click", function() {
+            var audio = document.getElementById("audio");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        });
+    </script>
     <script>
         document.querySelectorAll("h2").forEach(h2 => {
             h2.addEventListener("mouseover", () => {
