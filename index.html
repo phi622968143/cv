@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>謝鎮宇的履歷</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            width: 150px;
+            height: 200px; /* 設定寬高相同，確保是正圓 */
+            object-fit: cover; /* 確保圖片不變形 */
+            border-radius: 50%;
+            transition: transform 0.3s, filter 0.3s;
+        }
+        img:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+        h1, h2 {
+            color: #333;
+            transition: color 0.3s;
+        }
+        h1:hover, h2:hover {
+            color: #007bff;
+        }
+        p, ul {
+            text-align: left;
+            padding: 0 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #eee;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        li:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>謝鎮宇的個人網站</h1>
+        <img src="images/profile.jpg" alt="個人照片">
+        
+        <h2>基本資料</h2>
+        <p><strong>家鄉：</strong> 新北人，現居台南</p>
+        <p><strong>學歷：</strong> 成大環工四上,和平高中畢業</p>
+
+        <h2>聯絡資訊</h2>
+        <p><strong>手機：</strong> 0919130585</p>
+        <p><strong>Line：</strong> <a href="https://line.me/ti/p/wNPTrVFk3T">a622968143</a></p>
+
+        <h2>工作經驗</h2>
+        <ul>
+            <li>育樂街慶三號早餐店櫃檯</li>
+            <li>金牌國中數學輔導半年</li>
+            <li>高中英文家教一年</li>
+        </ul>
+
+        <h2>可工作時段</h2>
+        <p>每週至少三天，週一不可，其餘時間皆可排班。</p>
+        <h3>興趣與個性</h3>
+        <p>🎸,善於溝通,願意學習改進</p>
+    </div>
+
+    <script>
+        document.querySelectorAll("h2").forEach(h2 => {
+            h2.addEventListener("mouseover", () => {
+                h2.style.fontSize = "1.8em";
+            });
+            h2.addEventListener("mouseout", () => {
+                h2.style.fontSize = "1.5em";
+            });
+        });
+    </script>
+
+</body>
+</html>
