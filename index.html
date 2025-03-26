@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>謝鎮宇的履歷</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +18,24 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+        /* 載入動畫 */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+            z-index: 9999;
+        }
         .container {
+            display: none; /* 初始隱藏 */
             width: 80%;
             max-width: 600px;
             margin: 20px auto;
@@ -75,6 +93,10 @@
 </head>
 <body>
 
+    <!-- GSAP 載入動畫 -->
+    <div id="loading-screen"><img src="/images/entering_animation.png " alt=""></div>
+
+    <!-- 網站內容 -->
     <div class="container">
         <h1>謝鎮宇的個人網站</h1>
         <img src="images/profile.png" alt="個人照片">
@@ -111,6 +133,21 @@
     </div>
 
     <script>
+        // GSAP 載入動畫
+        let tl = gsap.timeline();
+
+        tl.fromTo("#loading-screen",
+            { opacity: 1, scale: 0.5 },
+            { opacity: 1, scale: 1.2, duration: 1.2, ease: "power2.out" }
+        ).to("#loading-screen",
+            { opacity: 0, duration: 0.8, ease: "power1.out", delay: 0.5 }
+        ).set("#loading-screen", { display: "none" })
+        .set(".container", { display: "block" })
+        .fromTo(".container",
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+        );
+
         // 點擊圖片播放音樂
         function toggleAudio(audioId, imgId, rotate = false) {
             let audio = document.getElementById(audioId);
@@ -128,7 +165,7 @@
 
         // 監聽點擊事件
         document.getElementById("playAudio").addEventListener("click", function() {
-            toggleAudio("audio", "playAudio",true);
+            toggleAudio("audio", "playAudio", true);
         });
 
         document.getElementById("playSunset").addEventListener("click", function() {
