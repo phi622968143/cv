@@ -53,7 +53,10 @@
             cursor: pointer;
             transition: transform 0.3s, filter 0.3s;
         }
-        img:hover {
+        img:not(.gallery-img) {
+            transition: transform 0.3s, filter 0.3s;
+        }
+        img:not(.gallery-img):hover {
             transform: scale(1.1);
             filter: brightness(1.2);
         }
@@ -102,12 +105,30 @@
             transition: transform 0.5s ease;
             width: 100%;
         }
-        .gallery img {
+        .gallery-img {
             width: 100%;
             flex-shrink: 0;
             object-fit: cover;
             border-radius: 10px;
             height: 300px;
+            cursor: default;
+        }
+        .gallery-navigation {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .gallery-nav-btn {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -151,12 +172,16 @@
         <img src="./images/Light.png" alt="light" id="playSunset">
         <audio id="music" src="/voice/Light.m4a"></audio>
 
-        <h3>我的貓咪相簿</h3>
+        <h3>妙妙相簿</h3>
         <div class="gallery-container">
+            <div class="gallery-navigation">
+                <button class="gallery-nav-btn" id="prevBtn">←</button>
+                <button class="gallery-nav-btn" id="nextBtn">→</button>
+            </div>
             <div class="gallery" id="catGallery">
-                <img src="/images/cat1.jpg" alt="Cat 1">
-                <img src="/images/cat2.jpg" alt="Cat 2">
-                <img src="/images/cat3.jpg" alt="Cat 3">
+                <img class="gallery-img" src="/images/cat1.jpg" alt="Cat 1">
+                <img class="gallery-img" src="/images/cat2.jpg" alt="Cat 2">
+                <img class="gallery-img" src="/images/cat3.jpg" alt="Cat 3">
             </div>
         </div>
     </div>
@@ -211,36 +236,42 @@
             const gallery = document.getElementById('catGallery');
             const images = gallery.getElementsByTagName('img');
             const totalImages = images.length;
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
+        
+            // 初始化 gallery 容器
+            gallery.style.width = `${totalImages * 100}%`;
+            gallery.style.display = 'flex';
         
             // 重置圖片位置
             function resetGalleryPosition() {
-                gallery.style.transform = `translateX(-${currentIndex * 100}%)`;
+                gallery.style.transition = 'transform 0.5s ease';
+                gallery.style.transform = `translateX(-${(currentIndex * 100 / totalImages)}%)`;
             }
         
-            // 為每張圖片添加點擊事件
-            Array.from(images).forEach((img, index) => {
-                img.addEventListener('click', (e) => {
-                    // 檢查點擊位置是否在圖片右半部
-                    const rect = img.getBoundingClientRect();
-                    const clickX = e.clientX - rect.left;
-                    
-                    if (clickX > rect.width / 2) {
-                        // 點擊右側時切換到下一張
-                        if (currentIndex < totalImages - 1) {
-                            currentIndex++;
-                            resetGalleryPosition();
-                        }
-                    } else {
-                        // 點擊左側時切換到上一張
-                        if (currentIndex > 0) {
-                            currentIndex--;
-                            resetGalleryPosition();
-                        }
-                    }
-                });
+            // 下一張
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % totalImages;
+                resetGalleryPosition();
+            }
+        
+            // 上一張
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                resetGalleryPosition();
+            }
+        
+            // 按鈕事件
+            nextBtn.addEventListener('click', nextImage);
+            prevBtn.addEventListener('click', prevImage);
+        
+            // 初始化每張圖片的寬度
+            Array.from(images).forEach(img => {
+                img.style.width = `${100 / totalImages}%`;
+                img.style.flexShrink = '0';
             });
         });
-    </script>
+      </script>
 </body>
 </html>
