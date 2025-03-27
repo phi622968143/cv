@@ -5,193 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>謝鎮宇的履歷</title>
     <link rel="icon" href="/images/entering_animation.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background-image: url("/images/bocchi.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        
-        /* 載入動畫 */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 4rem;
-            font-weight: bold;
-            z-index: 9999;
-        }
-        
-        .container {
-            display: none; /* 初始隱藏 */
-            width: 80%;
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: transform 0.3s, filter 0.3s;
-        }
-        
-        img:not(.gallery-img) {
-            transition: transform 0.3s, filter 0.3s;
-        }
-        
-        img:not(.gallery-img):hover {
-            transform: scale(1.1);
-            filter: brightness(1.2);
-        }
-        
-        h1, h2 {
-            color: #333;
-            transition: color 0.3s;
-        }
-        
-        h1:hover, h2:hover {
-            color: #007bff;
-        }
-        
-        p, ul {
-            text-align: left;
-            padding: 0 20px;
-        }
-        
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        li {
-            background: #eee;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        
-        li:hover {
-            background: #ddd;
-        }
-        
-        /* 旋轉動畫 */
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .playing {
-            animation: spin 3s linear infinite;
-        }
-        
-        .gallery-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        
-        .gallery {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: 100%;
-        }
-        
-        /* 禁止跳轉瞬間的動畫 */
-        .gallery.no-transition {
-            transition: none;
-        }
-        
-        .gallery-img {
-            width: 100%;
-            flex-shrink: 0;
-            object-fit: cover;
-            border-radius: 10px;
-            height: 300px;
-            cursor: default;
-        }
-        
-        .gallery-navigation {
-            display: flex;
-            justify-content: space-between;
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-        
-        .gallery-nav-btn {
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        
-        /* 工作經驗收縮效果 */
-        .experience-list {
-            display: none;
-            padding-left: 20px;
-        }
-        
-        /* 展開後顯示列表 */
-        .experience-list.show {
-            display: block;
-        }
-        
-        .toggle {
-            cursor: pointer;
-            color: #007bff;
-            text-decoration: underline;
-        }
-        
-        .toggle:hover {
-            color: #0056b3;
-        }
-        
-        /* 高中和大學經驗標題 */
-        .toggle-btn {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
-            margin-top: 20px;
-        }
-        
-        .toggle-btn:hover {
-            color: #007bff;
-        }    
-    </style>
 </head>
 <body>
+
     <!-- GSAP 載入動畫 -->
     <div id="loading-screen"><img src="/images/entering_animation.png " alt=""></div>
-
     <!-- 網站內容 -->
     <div class="container">
         <h1>謝鎮宇的個人網站</h1>
@@ -224,7 +45,7 @@
         </ul>
         
         <h2>可工作時段</h2>
-        <p>期望每週至少三天排班，其中只有週一不可，其餘平日時間17-22皆可排班,假日10-22。</p>
+        <p>期望每週至少三天排班，只有週一不可，平日時間17-22皆可排班,假日10-22。</p>
 
         <h3>興趣與個性</h3>
         <p>🎸,善於溝通,願意學習改進</p>
@@ -251,14 +72,11 @@
             </div>
         </div>
     </div>
-
-   
 </body> 
 <script>
-        // GSAP 載入動畫
-        let tl = gsap.timeline();
+    let tl = gsap.timeline();
 
-        tl.fromTo("#loading-screen",
+    tl.fromTo("#loading-screen",
             { opacity: 1, scale: 0.5 },
             { opacity: 1, scale: 1.2, duration: 1.2, ease: "power2.out" }
         ).to("#loading-screen",
@@ -268,124 +86,7 @@
         .fromTo(".container",
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
-        );
-        function toggleExperience(section) {
-            const experienceSection = document.getElementById(section);
-            if (experienceSection.classList.contains('show')) {
-                experienceSection.classList.remove('show');  // 隐藏经验
-            } else {
-                experienceSection.classList.add('show');  // 显示经验
-            }
-        }
-
-        function toggleAudio(audioId, imgId, rotate = false) {
-            let audio = document.getElementById(audioId);
-            let img = document.getElementById(imgId);
-
-            if (audio.paused) {
-                audio.play();
-                if (rotate) img.classList.add("playing");
-            } else {
-                audio.pause();
-                audio.currentTime = 0;
-                if (rotate) img.classList.remove("playing");
-            }
-        }
-
-        // 監聽點擊事件
-        document.getElementById("playAudio").addEventListener("click", function() {
-            toggleAudio("audio", "playAudio", true);
-        });
-
-        document.getElementById("playSunset").addEventListener("click", function() {
-            toggleAudio("music", "playSunset", true);
-        });
-
-        // 讓 h2 滑鼠懸停時變大
-        document.querySelectorAll("h2").forEach(h2 => {
-            h2.addEventListener("mouseover", () => h2.style.fontSize = "1.8em");
-            h2.addEventListener("mouseout", () => h2.style.fontSize = "1.5em");
-        });
-        //cat gallery
-        document.addEventListener('DOMContentLoaded', () => {
-            const gallery = document.getElementById('catGallery');
-            const images = Array.from(gallery.getElementsByTagName('img'));
-            const totalImages = images.length;
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-        
-            let currentIndex = 1; // 預設從真正的第一張開始
-            let isTransitioning = false; // 防止動畫未完成時多次點擊
-        
-            // **1. 複製第一張和最後一張，放到兩端**
-            const firstClone = images[0].cloneNode(true);
-            const lastClone = images[totalImages - 1].cloneNode(true);
-            gallery.appendChild(firstClone);
-            gallery.insertBefore(lastClone, images[0]);
-        
-            // **2. 更新圖片陣列**
-            const updatedImages = Array.from(gallery.getElementsByTagName('img'));
-            const updatedTotalImages = updatedImages.length;
-        
-            // **3. 設定 gallery 的寬度**
-            gallery.style.width = `${updatedTotalImages * 100}%`;
-            gallery.style.display = 'flex';
-        
-            // **4. 初始化圖片大小**
-            updatedImages.forEach(img => {
-                img.style.width = `${100 / updatedTotalImages}%`;
-                img.style.flexShrink = '0';
-            });
-        
-            // **5. 設定初始位置**
-            gallery.style.transition = 'none';
-            gallery.style.transform = `translateX(-${(currentIndex * 100) / updatedTotalImages}%)`;
-        
-            function updatePosition(useTransition = true) {
-                if (useTransition) {
-                    gallery.style.transition = 'transform 0.5s ease';
-                } else {
-                    gallery.style.transition = 'none';
-                }
-                gallery.style.transform = `translateX(-${(currentIndex * 100) / updatedTotalImages}%)`;
-            }
-        
-            function nextImage() {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                currentIndex++;
-                updatePosition();
-        
-                // **6. 監聽過渡結束，瞬間跳回**
-                gallery.addEventListener('transitionend', function resetPosition() {
-                    if (currentIndex === updatedTotalImages - 1) {
-                        currentIndex = 1;
-                        updatePosition(false); // 取消動畫，瞬間跳轉
-                    }
-                    isTransitioning = false;
-                    gallery.removeEventListener('transitionend', resetPosition);
-                });
-            }
-        
-            function prevImage() {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                currentIndex--;
-                updatePosition();
-        
-                // **7. 監聽過渡結束，瞬間跳回**
-                gallery.addEventListener('transitionend', function resetPosition() {
-                    if (currentIndex === 0) {
-                        currentIndex = updatedTotalImages - 2;
-                        updatePosition(false); // 取消動畫，瞬間跳轉
-                    }
-                    isTransitioning = false;
-                    gallery.removeEventListener('transitionend', resetPosition);
-                });
-            }
-        
-            nextBtn.addEventListener('click', nextImage);
-            prevBtn.addEventListener('click', prevImage);
-        });
-    </script>
+    );
+</script>
+<script src="./effect.js"></script>
 </html>
