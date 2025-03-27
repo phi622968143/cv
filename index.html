@@ -19,6 +19,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+        
         /* 載入動畫 */
         #loading-screen {
             position: fixed;
@@ -35,6 +36,7 @@
             font-weight: bold;
             z-index: 9999;
         }
+        
         .container {
             display: none; /* 初始隱藏 */
             width: 80%;
@@ -45,6 +47,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        
         img {
             width: 200px;
             height: 200px;
@@ -53,28 +56,35 @@
             cursor: pointer;
             transition: transform 0.3s, filter 0.3s;
         }
+        
         img:not(.gallery-img) {
             transition: transform 0.3s, filter 0.3s;
         }
+        
         img:not(.gallery-img):hover {
             transform: scale(1.1);
             filter: brightness(1.2);
         }
+        
         h1, h2 {
             color: #333;
             transition: color 0.3s;
         }
+        
         h1:hover, h2:hover {
             color: #007bff;
         }
+        
         p, ul {
             text-align: left;
             padding: 0 20px;
         }
+        
         ul {
             list-style: none;
             padding: 0;
         }
+        
         li {
             background: #eee;
             margin: 5px 0;
@@ -82,17 +92,21 @@
             border-radius: 5px;
             transition: background 0.3s;
         }
+        
         li:hover {
             background: #ddd;
         }
+        
         /* 旋轉動畫 */
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+        
         .playing {
             animation: spin 3s linear infinite;
         }
+        
         .gallery-container {
             position: relative;
             width: 100%;
@@ -100,11 +114,18 @@
             margin: 0 auto;
             overflow: hidden;
         }
+        
         .gallery {
             display: flex;
             transition: transform 0.5s ease;
             width: 100%;
         }
+        
+        /* 禁止跳轉瞬間的動畫 */
+        .gallery.no-transition {
+            transition: none;
+        }
+        
         .gallery-img {
             width: 100%;
             flex-shrink: 0;
@@ -113,6 +134,7 @@
             height: 300px;
             cursor: default;
         }
+        
         .gallery-navigation {
             display: flex;
             justify-content: space-between;
@@ -122,6 +144,7 @@
             transform: translateY(-50%);
             z-index: 10;
         }
+        
         .gallery-nav-btn {
             background: rgba(0,0,0,0.5);
             color: white;
@@ -130,6 +153,39 @@
             cursor: pointer;
             font-size: 20px;
         }
+        
+        /* 工作經驗收縮效果 */
+        .experience-list {
+            display: none;
+            padding-left: 20px;
+        }
+        
+        /* 展開後顯示列表 */
+        .experience-list.show {
+            display: block;
+        }
+        
+        .toggle {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        .toggle:hover {
+            color: #0056b3;
+        }
+        
+        /* 高中和大學經驗標題 */
+        .toggle-btn {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+        
+        .toggle-btn:hover {
+            color: #007bff;
+        }    
     </style>
 </head>
 <body>
@@ -150,15 +206,25 @@
         <p><strong>手機：</strong> 0919130585</p>
         <p><strong>Line：</strong> <a href="https://line.me/ti/p/wNPTrVFk3T">a622968143</a></p>
 
-        <h2>工作經驗</h2>
+        <h2>工作經驗(點擊文字展開)</h2>
         <ul>
-            <li>育樂街慶三號早餐店櫃檯</li>
-            <li>金牌國中數學輔導半年</li>
-            <li>高中英文家教一年</li>
+            <p class="toggle-btn toggle" onclick="toggleExperience('high-school')"><strong>高中</strong></p>
+            <ul id="high-school" class="experience-list">
+                <li>麥當勞一年</li>
+            </ul>
+        
+            <p class="toggle-btn toggle" onclick="toggleExperience('college')"><strong>大學</strong></p>
+            <ul id="college" class="experience-list">
+                <li>拉麵店外場半年</li>
+                <li>育樂街慶三號早餐店櫃檯</li>
+                <li>成大工科KDD實驗室助理半年</li>
+                <li>金牌國中數學輔導半年</li>
+                <li>高中英文家教一年</li>
+            </ul>
         </ul>
-
+        
         <h2>可工作時段</h2>
-        <p>每週至少三天，週一不可，其餘時間皆可排班。</p>
+        <p>期望每週至少三天排班，其中只有週一不可，其餘平日時間17-22皆可排班,假日10-22。</p>
 
         <h3>興趣與個性</h3>
         <p>🎸,善於溝通,願意學習改進</p>
@@ -186,7 +252,9 @@
         </div>
     </div>
 
-    <script>
+   
+</body> 
+<script>
         // GSAP 載入動畫
         let tl = gsap.timeline();
 
@@ -201,8 +269,15 @@
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
         );
+        function toggleExperience(section) {
+            const experienceSection = document.getElementById(section);
+            if (experienceSection.classList.contains('show')) {
+                experienceSection.classList.remove('show');  // 隐藏经验
+            } else {
+                experienceSection.classList.add('show');  // 显示经验
+            }
+        }
 
-        // 點擊圖片播放音樂
         function toggleAudio(audioId, imgId, rotate = false) {
             let audio = document.getElementById(audioId);
             let img = document.getElementById(imgId);
@@ -234,44 +309,83 @@
         //cat gallery
         document.addEventListener('DOMContentLoaded', () => {
             const gallery = document.getElementById('catGallery');
-            const images = gallery.getElementsByTagName('img');
+            const images = Array.from(gallery.getElementsByTagName('img'));
             const totalImages = images.length;
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-            let currentIndex = 0;
         
-            // 初始化 gallery 容器
-            gallery.style.width = `${totalImages * 100}%`;
+            let currentIndex = 1; // 預設從真正的第一張開始
+            let isTransitioning = false; // 防止動畫未完成時多次點擊
+        
+            // **1. 複製第一張和最後一張，放到兩端**
+            const firstClone = images[0].cloneNode(true);
+            const lastClone = images[totalImages - 1].cloneNode(true);
+            gallery.appendChild(firstClone);
+            gallery.insertBefore(lastClone, images[0]);
+        
+            // **2. 更新圖片陣列**
+            const updatedImages = Array.from(gallery.getElementsByTagName('img'));
+            const updatedTotalImages = updatedImages.length;
+        
+            // **3. 設定 gallery 的寬度**
+            gallery.style.width = `${updatedTotalImages * 100}%`;
             gallery.style.display = 'flex';
         
-            // 重置圖片位置
-            function resetGalleryPosition() {
-                gallery.style.transition = 'transform 0.5s ease';
-                gallery.style.transform = `translateX(-${(currentIndex * 100 / totalImages)}%)`;
-            }
-        
-            // 下一張
-            function nextImage() {
-                currentIndex = (currentIndex + 1) % totalImages;
-                resetGalleryPosition();
-            }
-        
-            // 上一張
-            function prevImage() {
-                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-                resetGalleryPosition();
-            }
-        
-            // 按鈕事件
-            nextBtn.addEventListener('click', nextImage);
-            prevBtn.addEventListener('click', prevImage);
-        
-            // 初始化每張圖片的寬度
-            Array.from(images).forEach(img => {
-                img.style.width = `${100 / totalImages}%`;
+            // **4. 初始化圖片大小**
+            updatedImages.forEach(img => {
+                img.style.width = `${100 / updatedTotalImages}%`;
                 img.style.flexShrink = '0';
             });
+        
+            // **5. 設定初始位置**
+            gallery.style.transition = 'none';
+            gallery.style.transform = `translateX(-${(currentIndex * 100) / updatedTotalImages}%)`;
+        
+            function updatePosition(useTransition = true) {
+                if (useTransition) {
+                    gallery.style.transition = 'transform 0.5s ease';
+                } else {
+                    gallery.style.transition = 'none';
+                }
+                gallery.style.transform = `translateX(-${(currentIndex * 100) / updatedTotalImages}%)`;
+            }
+        
+            function nextImage() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex++;
+                updatePosition();
+        
+                // **6. 監聽過渡結束，瞬間跳回**
+                gallery.addEventListener('transitionend', function resetPosition() {
+                    if (currentIndex === updatedTotalImages - 1) {
+                        currentIndex = 1;
+                        updatePosition(false); // 取消動畫，瞬間跳轉
+                    }
+                    isTransitioning = false;
+                    gallery.removeEventListener('transitionend', resetPosition);
+                });
+            }
+        
+            function prevImage() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex--;
+                updatePosition();
+        
+                // **7. 監聽過渡結束，瞬間跳回**
+                gallery.addEventListener('transitionend', function resetPosition() {
+                    if (currentIndex === 0) {
+                        currentIndex = updatedTotalImages - 2;
+                        updatePosition(false); // 取消動畫，瞬間跳轉
+                    }
+                    isTransitioning = false;
+                    gallery.removeEventListener('transitionend', resetPosition);
+                });
+            }
+        
+            nextBtn.addEventListener('click', nextImage);
+            prevBtn.addEventListener('click', prevImage);
         });
-      </script>
-</body>
+    </script>
 </html>
