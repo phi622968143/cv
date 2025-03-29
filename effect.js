@@ -7,27 +7,28 @@
             }
         }
 
-        function toggleAudio(audioId, imgId, rotate = false) {
-            let audio = document.getElementById(audioId);
-            let img = document.getElementById(imgId);
+        document.addEventListener("DOMContentLoaded", function() {
+            function toggleAudio(audioId, imgId, rotate = false) {
+                let audio = document.getElementById(audioId);
+                let img = document.getElementById(imgId);
 
-            if (audio.paused) {
-                audio.play();
-                if (rotate) img.classList.add("playing");
-            } else {
-                audio.pause();
-                audio.currentTime = 0;
-                if (rotate) img.classList.remove("playing");
+                if (audio.paused) {
+                    audio.play();
+                    if (rotate) img.classList.add("playing");
+                } else {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    if (rotate) img.classList.remove("playing");
+                }
             }
-        }
 
-        // 監聽點擊事件
-        document.getElementById("playAudio").addEventListener("click", function() {
-            toggleAudio("audio", "playAudio", true);
-        });
+            document.getElementById("catImage").addEventListener("click", function() {
+                toggleAudio("catAudio", "catImage", true);
+            });
 
-        document.getElementById("playSunset").addEventListener("click", function() {
-            toggleAudio("music", "playSunset", true);
+            document.getElementById("sunsetImage").addEventListener("click", function() {
+                toggleAudio("sunsetAudio", "sunsetImage", true);
+            });
         });
 
         // 讓 h2 滑鼠懸停時變大
