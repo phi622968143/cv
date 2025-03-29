@@ -57,9 +57,11 @@ img:not(.gallery-img):hover {
     filter: brightness(1.2);
 }
 
-h1, h2 {
+h1, h2 ,h3{
     color: #333;
     transition: color 0.3s;
+    /* 確保標題的對齊方式與內容區塊相同 */
+    text-align: left;
 }
 
 h1:hover, h2:hover {
@@ -67,21 +69,25 @@ h1:hover, h2:hover {
 }
 
 p, ul {
-    text-align: left;
-    padding: 0 20px;
+    text-align: center; /* 改為置中以與標題對齊 */
+    padding: 0;
+    margin: 0 auto;
 }
 
 ul {
     list-style: none;
     padding: 0;
+    width: 90%; /* 設定寬度讓內容與標題在視覺上對齊 */
+    margin: 0 auto;
 }
 
 li {
     background: #eee;
-    margin: 5px 0;
+    margin: 5px auto; /* 使用 auto 水平置中 */
     padding: 10px;
     border-radius: 5px;
     transition: background 0.3s;
+    text-align: center; /* 確保內容置中 */
 }
 
 li:hover {
@@ -145,35 +151,33 @@ li:hover {
     font-size: 20px;
 }
 
-/* 工作經驗收縮效果 */
+/* 隱藏列表 */
 .experience-list {
     display: none;
-    padding-left: 20px;
+    padding: 0;
+    list-style: none; /* 移除預設項目符號 */
+    width: 90%; /* 與父元素寬度相同 */
+    margin: 0 auto; /* 水平置中 */
+    transition: max-height 0.3s ease-in-out; /* 平滑展開效果 */
 }
 
-/* 展開後顯示列表 */
+/* 展開時顯示列表 */
 .experience-list.show {
     display: block;
 }
 
-.toggle {
-    cursor: pointer;
-    color: #007bff;
-    text-decoration: underline;
-}
-
-.toggle:hover {
-    color: #0056b3;
-}
-
-/* 高中和大學經驗標題 */
+/* 可點擊的標題樣式 */
 .toggle-btn {
-    font-size: 1.2rem;
+    cursor: pointer;
     font-weight: bold;
-    color: #333;
-    margin-top: 20px;
+    padding: 5px 10px;
+    border-left: 4px solid #007BFF; /* 增加左邊藍色標識 */
+    margin: 5px 0;
+    display: inline-block;
+    transition: background 0.2s ease-in-out;
 }
 
+/* 滑鼠懸停時改變背景色 */
 .toggle-btn:hover {
-    color: #007bff;
-}    
+    background: #f0f0f0;
+}

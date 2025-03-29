@@ -12,7 +12,7 @@
 <body>
 
     <!-- GSAP 載入動畫 -->
-    <div id="loading-screen"><img src="/images/entering_animation.png " alt=""></div>
+    <div id="loading-screen"><img src="/images/entering_animation.png" alt=""></div>
     <!-- 網站內容 -->
     <div class="container">
         <h1>謝鎮宇的個人網站</h1>
@@ -20,14 +20,50 @@
         <p style="text-align: center; text-decoration: line-through;">我是那隻黑色的:D</p>
 
         <h2>基本資料</h2>
-        <p><strong>家鄉：</strong> 新北人，現居台南</p>
-        <p><strong>學歷：</strong> 成大環工四上,和平高中畢業</p>
-
+        <p style="padding-right: 69px;">
+            <strong>家鄉：</strong>新北人，現居台南
+        </p>
+        <p style="text-align: center;">
+            <strong>學歷：</strong>成大環工四上,和平高中畢業
+        </p>
+         
+         
+         
         <h2>聯絡資訊</h2>
-        <p><strong>手機：</strong> 0919130585</p>
-        <p><strong>Line：</strong> <a href="https://line.me/ti/p/wNPTrVFk3T">a622968143</a></p>
-
-        <h2>工作經驗(點擊文字展開)</h2>
+        <p style="padding-right: 100px;"><strong>手機：</strong> 0919130585</p>
+        <p style="padding-right: 96px;"><strong>Line：</strong> <a href="https://line.me/ti/p/wNPTrVFk3T">a622968143</a></p>
+        
+        <h2 style="align-items: center; ">
+            技能
+            <a href="https://github.com/phi622968143" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center;">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" style="width: 18px; height: 18px;">
+            </a>
+        </h2>
+        
+            <p class="toggle-btn toggle" onclick="toggleExperience('frontend')"><strong>前端</strong></p>
+            <ul id="frontend" class="experience-list">
+                <li>HTML</li>
+                <li>JavaScript</li>
+                <li>ReactJS</li>
+            </ul>
+        
+            <p class="toggle-btn toggle" onclick="toggleExperience('backend')"><strong>後端</strong></p>
+            <ul id="backend" class="experience-list">
+                <li>PHP (Laravel)</li>
+                <li>ExpressJS</li>
+                <li>MySQL</li>
+                <li>Django</li>
+            </ul>
+        
+            <p class="toggle-btn toggle" onclick="toggleExperience('others')"><strong>其他</strong></p>
+            <ul id="others" class="experience-list">
+                <li>Arduino</li>
+                <li>C 語言</li>
+                <li>Linux (Ubuntu)</li>
+            </ul>
+   
+        
+        <h2>工作經驗</h2>
         <ul>
             <p class="toggle-btn toggle" onclick="toggleExperience('high-school')"><strong>高中</strong></p>
             <ul id="high-school" class="experience-list">
@@ -45,18 +81,18 @@
         </ul>
         
         <h2>可工作時段</h2>
-        <p>期望每週至少三天排班，只有週一不可，平日時間17-22皆可排班,假日10-22。</p>
+        <p>期望每週至少三天排班，只有週一不可，<br>平日時間17-22皆可排班,假日10-22。</p>
 
-        <h3>興趣,社團經驗與個性</h3>
+        <h3>興趣個性社團經驗</h3>
         <p>  🎸,善於溝通,願意學習改進,<a href="club.pdf">社團經驗</a></p>
 
         <h3>點擊貓咪圖會有呼嚕聲喔！</h3>
-        <img src="./images/bcat.png" alt="貓咪圖片" id="playAudio">
-        <p><h3>(我家妙妙是小女生)</h3></p>
+        <img src="./images/bcat.png" alt="貓咪圖片" id="playAudio" onclick="document.getElementById('audio').play();">
+        <p>(我家妙妙是小女生)</p>
         <audio id="audio" src="/voice/cat.m4a"></audio>
         
-        <h3>最愛的歌 (落日飛車 - Let There Be Light Again)</h3>
-        <img src="./images/Light.png" alt="light" id="playSunset">
+        <h3>最愛的歌 (落日飛車 - <br>Let There Be Light Again)</h3>
+        <img src="./images/Light.png" alt="light" id="playSunset" onclick="document.getElementById('music').play();">
         <audio id="music" src="/voice/Light.m4a"></audio>
 
         <h3>妙妙相簿</h3>
@@ -73,6 +109,7 @@
         </div>
     </div>
 </body> 
+
 <script>
     let tl = gsap.timeline();
 
@@ -89,4 +126,5 @@
     );
 </script>
 <script src="./effect.js"></script>
+
 </html>
